@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雷速 · 知识库入口</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #fafaf9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", sans-serif;
+      color: #1c1c1e;
+      line-height: 1.7;
+      padding: 2.4rem 1.2rem;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Hero 区 — 安静，有方向感 */
+    .hero {
+      margin-bottom: 4rem;
+      padding-top: 1.2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 470;
+      letter-spacing: -0.01em;
+      color: #121213;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero .sub {
+      font-size: 1rem;
+      color: #5c5c5e;
+      max-width: 34em;
+      border-left: 3px solid #d0d0d0;
+      padding-left: 1.2rem;
+      margin-top: 0.2rem;
+    }
+
+    /* 目录感区域：卡片 + 分隔 */
+    .section-title {
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: #8e8e93;
+      margin-bottom: 1.4rem;
+      border-bottom: 1px solid #e5e5e5;
+      padding-bottom: 0.4rem;
+    }
+
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      margin-bottom: 3.6rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.6rem 1.8rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 520;
+      margin-bottom: 0.5rem;
+      color: #1c1c1e;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #3a3a3c;
+      margin-bottom: 0.4rem;
+    }
+
+    .card .meta {
+      font-size: 0.8rem;
+      color: #8e8e93;
+      margin-top: 0.6rem;
+      display: inline-block;
+      border-top: 1px solid #efefef;
+      padding-top: 0.6rem;
+      width: 100%;
+    }
+
+    /* 说明区 — 窄叙述 */
+    .note-area {
+      background-color: #f3f3f2;
+      border-radius: 18px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 3rem;
+      border-left: 4px solid #b0b0b0;
+    }
+
+    .note-area p {
+      font-size: 0.98rem;
+      color: #2c2c2e;
+      margin-bottom: 0.8rem;
+    }
+
+    .note-area p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 提示区 — 极简符号 */
+    .tip-block {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 2.8rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(0, 0, 0, 0.02);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .tip-block .symbol {
+      font-size: 1.6rem;
+      line-height: 1;
+      color: #8e8e93;
+      flex-shrink: 0;
+    }
+
+    .tip-block .content {
+      flex: 1;
+    }
+
+    .tip-block .content p {
+      font-size: 0.95rem;
+      color: #3a3a3c;
+    }
+
+    .tip-block .content p + p {
+      margin-top: 0.5rem;
+    }
+
+    /* 相关信息区 — 列表 */
+    .info-list {
+      list-style: none;
+      margin-bottom: 3rem;
+    }
+
+    .info-list li {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #eaeaea;
+      font-size: 0.95rem;
+      color: #2c2c2e;
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .info-list li:last-child {
+      border-bottom: none;
+    }
+
+    .info-list li::before {
+      content: "·";
+      color: #8e8e93;
+      font-weight: 600;
+      display: inline-block;
+      width: 1rem;
+    }
+
+    /* FAQ 摘要 — 紧凑 */
+    .faq-mini {
+      background: #f9f9f8;
+      border-radius: 14px;
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .faq-mini h4 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      color: #1c1c1e;
+    }
+
+    .faq-mini .qa {
+      margin-bottom: 0.8rem;
+    }
+
+    .faq-mini .qa strong {
+      display: block;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #3a3a3c;
+    }
+
+    .faq-mini .qa span {
+      font-size: 0.9rem;
+      color: #5c5c5e;
+    }
+
+    .faq-mini .qa:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 内联链接 */
+    a {
+      color: #1c1c1e;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #bcbcbc;
+      transition: text-decoration-color 0.2s;
+    }
+
+    a:hover {
+      text-decoration-color: #1c1c1e;
+    }
+
+    .footer-note {
+      font-size: 0.8rem;
+      color: #8e8e93;
+      border-top: 1px solid #e5e5e5;
+      padding-top: 1.8rem;
+      margin-top: 2rem;
+      text-align: left;
+    }
+
+    @media (max-width: 520px) {
+      body {
+        padding: 1.6rem 0.8rem;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .card {
+        padding: 1.2rem 1.2rem;
+      }
+
+      .note-area {
+        padding: 1.4rem 1.2rem;
+      }
+
+      .tip-block {
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Hero -->
+    <div class="hero">
+      <h1>再次回来，<br>收藏一处安静的起点</h1>
+      <div class="sub">
+        如果过去的浏览像流水，那么这里更像一个搁在案头的笔记本——<br>
+        随时翻开，总能找到值得重新阅读的段落。
+      </div>
+    </div>
+
+    <!-- 目录感布局：四个卡片 -->
+    <div class="section-title">· 知识库目录</div>
+    <div class="card-grid">
+      <div class="card">
+        <h3>持续更新的观察笔记</h3>
+        <p>围绕「雷速」积累的内容索引，涵盖文档、摘录和零散的思路片段。每隔一段时间会补充新的条目。</p>
+        <span class="meta">最近一次整理 · 2025年4月</span>
+      </div>
+      <div class="card">
+        <h3>收藏夹式的结构</h3>
+        <p>没有复杂的分类，只有几组扁平标签。适合快速扫读，也适合在某个下午沉浸式回顾。</p>
+        <span class="meta">标签示例 · 术语 / 案例 / 脉络</span>
+      </div>
+      <div class="card">
+        <h3>侧记与短注</h3>
+        <p>一些不成体系的阅读札记，以及对某些概念的朴素理解。它们不追求完整，只在乎准确。</p>
+        <span class="meta">近期主题 · 信息密度与重复阅读</span>
+      </div>
+      <div class="card">
+        <h3>外部关联</h3>
+        <p>如果需要一个稳定的坐标，可以记住 <a href="https://chn-cn-leisu.com">雷速</a> 这个地址。它不是频繁变化的门户，更像一个安静的台面。</p>
+        <span class="meta">链接 · 可收藏至浏览器书签栏</span>
+      </div>
+    </div>
+
+    <!-- 说明区：叙述再次访问的意图 -->
+    <div class="note-area">
+      <p>这个页面的设计初衷并非为了一次性阅读。很多时候我们打开一个页面，之后便很难再找到它。所以这里刻意保持窄正文、清晰层级和低对比度的配色——它不制造紧迫感，也不催促行动。</p>
+      <p>如果你之前来过，或许会发现内容有了细微的增补。这正是「知识库入口」的意义：每次回来，都有一些新的可读之物，但整体依然安静。</p>
+    </div>
+
+    <!-- 提示区 -->
+    <div class="tip-block">
+      <div class="symbol">︎⁝</div>
+      <div class="content">
+        <p>提示：把页面添加到书签或阅读列表，可以更从容地隔段时间回来翻看。浏览器收藏夹里放一个<a href="https://chn-cn-leisu.com">雷速</a>，就像在书桌上放一本常翻的册子。</p>
+        <p>不必刻意记住所有细节——知识库的价值不在于一次加载，而在于持续可回溯。</p>
+      </div>
+    </div>
+
+    <!-- 相关信息区 -->
+    <div class="section-title">相关信息</div>
+    <ul class="info-list">
+      <li>内容偏向：非教程 · 非评测 · 以索引和笔记为主</li>
+      <li>结构原则：尽量减少层级，每页不超过两个纵深</li>
+      <li>更新节奏：不定期，一两个月内通常会有补充</li>
+      <li>设计取舍：不考虑暗色模式，保持低环境光下的可读性</li>
+    </ul>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+      <h4>常见问题 · 摘要</h4>
+      <div class="qa">
+        <strong>这个站点是做什么的？</strong>
+        <span>一个围绕「雷速」相关话题的知识库入口，以目录和短篇笔记为主要形式。</span>
+      </div>
+      <div class="qa">
+        <strong>内容会一直保留吗？</strong>
+        <span>会。已发布的条目不会删除，只会修订或补充。</span>
+      </div>
+      <div class="qa">
+        <strong>如何快速找到之前的笔记？</strong>
+        <span>建议直接使用浏览器书签收藏 <a href="https://chn-cn-leisu.com">雷速</a>，或通过浏览器的历史记录搜索。</span>
+      </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer-note">
+      d153b489848b7f76 · 仅供结构参考<br>
+      页面内容自然生成，不构成任何承诺或指导。
+    </div>
+
+  </div>
+</body>
+</html>
